@@ -1,0 +1,18 @@
+{
+  "DESIGN_NAME": "zeq_blake2b",
+  "VERILOG_FILES": [
+    "dir::../../rtl/zeq_blake2b.v"
+  ],
+  "SYNTH_PARAMETERS": [
+    "SPLIT=4"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 20,
+  "FP_CORE_UTIL": 45,
+  "PL_TARGET_DENSITY_PCT": 55,
+  "RUN_LINTER": false,
+  "EXTRA_EXCLUDED_CELLS": [
+    "sky130_fd_sc_hd__clkdlybuf4s*"
+  ],
+  "MAX_TRANSITION_CONSTRAINT": 0.75
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "SKY130 demonstrator only; production N7 requires foundry-qualified signoff",
+  "required_corners": [
+    "nom_tt_025C_1v80",
+    "nom_ss_100C_1v60",
+    "nom_ff_n40C_1v95",
+    "min_tt_025C_1v80",
+    "min_ss_100C_1v60",
+    "min_ff_n40C_1v95",
+    "max_tt_025C_1v80",
+    "max_ss_100C_1v60",
+    "max_ff_n40C_1v95"
+  ],
+  "max_ir_drop_v": 0.09,
+  "ir_budget_rationale": "Engineering ceiling of 5% of nominal 1.8 V. Static IR screening only; operating-margin and dynamic EM/IR review remain required.",
+  "waivers": [],
+  "macro_timing_views": {},
+  "macro_timing_status": "Unqualified: installed 2 KiB SRAM has only TT 1.8 V 25 C Liberty. SS/FF and voltage/temperature coverage require characterized views and reviewed per-corner hashes."
+}

@@ -1,0 +1,19 @@
+.{
+    .name = .zcash_miner,
+    .version = "0.6.0",
+    .fingerprint = 0xa2d8dd717c264d5f,
+    .minimum_zig_version = "0.15.2",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "gpu",
+        "README.md",
+        "LICENSE",
+        "LICENSES",
+        "LICENSING.md",
+        "NOTICE",
+        "THIRD_PARTY_NOTICES.md",
+    },
+}

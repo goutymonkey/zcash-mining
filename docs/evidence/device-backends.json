@@ -1,0 +1,111 @@
+{
+  "benchmark": {
+    "inputs": 16,
+    "isolated_machine": false,
+    "local_artifact": "private/launch/benchmark200-v2",
+    "params": [
+      200,
+      9
+    ],
+    "repeats_per_mode": 2,
+    "status": "RUNNING"
+  },
+  "ci": {
+    "commit": "249db0121312fc43518291ff34a95b915d39333c",
+    "hardware": "https://github.com/goutymonkey/zcash-mining/actions/runs/40933042943",
+    "software": "https://github.com/goutymonkey/zcash-mining/actions/runs/40933042934",
+    "status": "PASS"
+  },
+  "long_soak": {
+    "local_artifact": "private/launch/cpu-soak24h-v1",
+    "params": [
+      48,
+      5
+    ],
+    "qualifies_24_hours": false,
+    "requested_seconds": 86400,
+    "status": "RUNNING",
+    "threads": 2
+  },
+  "mainnet_uart": {
+    "build": "PASS",
+    "chips": 1,
+    "local_artifact": "asic/chip/build/host-sim200-v2/smoke-v1.json",
+    "params": [
+      200,
+      9
+    ],
+    "pool_qualification": {
+      "accepted": 1,
+      "artifact_distributed": false,
+      "checks": {
+        "accepted_shares": true,
+        "accounting": true,
+        "bridge_exit_success": true,
+        "chips_discovered": true,
+        "complete_duration": true,
+        "exit_success": true,
+        "independent_valid_shares": true,
+        "independent_verifier_clean": true,
+        "no_worker_failures": true,
+        "rtl_selected": true,
+        "runner_unchanged": true
+      },
+      "local_artifact": "private/launch/rtl-pool200-v1",
+      "result_sha256": "a20a99adb935d141e25c1fddb0e971b6e79e9445d0a028a01128a42edc0cf935",
+      "seconds": 300,
+      "status": "PASS"
+    },
+    "result_sha256": "9c92cdb356586b37ae3506b61a201ca80e9c81b25f7e7268de0b87004626dbe7",
+    "smoke": "PASS",
+    "verified_solutions": 1
+  },
+  "pending": [
+    "Redistributable evidence packaging",
+    "Broader corpus and hardware fault qualification",
+    "Completion of the actual 24-hour soak"
+  ],
+  "python_mining_integration_tests": 24,
+  "rtl_chain": {
+    "accepted": 20,
+    "artifact_distributed": false,
+    "checks": {
+      "accepted_shares": true,
+      "accounting": true,
+      "bridge_exit_success": true,
+      "chips_discovered": true,
+      "complete_duration": true,
+      "exit_success": true,
+      "independent_valid_shares": true,
+      "independent_verifier_clean": true,
+      "jobs": true,
+      "no_worker_failures": true,
+      "reconnect": true,
+      "rejections": true,
+      "rtl_selected": true,
+      "runner_unchanged": true
+    },
+    "chips": 4,
+    "local_artifact": "private/launch/rtl-chain-fault48-v2",
+    "params": [
+      48,
+      5
+    ],
+    "reconnects": 2,
+    "rejected": 5,
+    "result": "PASS",
+    "result_sha256": "bc875dc74a22a004e4249dae0a88f6f5d0dba53e99e20d07002625385118f9c9",
+    "seconds": 45,
+    "smoke_solutions": [
+      3,
+      1,
+      0,
+      7
+    ]
+  },
+  "schema": 1,
+  "scope": "Digital RTL and host integration. No fabricated chip, physical timing/power, or public-pool qualification.",
+  "serial": "Linux raw serial transport exercised with pseudo-terminals; physical hardware unavailable.",
+  "status": "IN_PROGRESS",
+  "zig_tests": 34
+}

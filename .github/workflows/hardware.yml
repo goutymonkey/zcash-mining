@@ -1,0 +1,90 @@
+name: Hardware integration
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'asic/chip/**'
+      - 'build.zig*'
+      - '.github/workflows/hardware.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'asic/chip/**'
+      - 'build.zig*'
+      - '.github/workflows/hardware.yml'
+  workflow_dispatch:
+    inputs:
+      mainnet:
+        description: Also run the longer mainnet-parameter UART qualification
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hardware-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  rtl:
+    name: Pinned RTL lint and pool integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        n: ${{ fromJSON(github.event_name == 'workflow_dispatch' && inputs.mainnet && '[48,200]' || '[48]') }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.11'
+      - name: Install pinned dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -r requirements-dev.txt
+          zig_archive="$RUNNER_TEMP/zig.tar.xz"
+          curl --fail --silent --show-error --location --retry 3 \
+            https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz \
+            --output "$zig_archive"
+          printf '%s  %s\n' \
+            02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239 \
+            "$zig_archive" | sha256sum --check --strict
+          tar -xJf "$zig_archive" -C "$RUNNER_TEMP"
+          printf '%s\n' "$RUNNER_TEMP/zig-x86_64-linux-0.15.2" >> "$GITHUB_PATH"
+          docker pull verilator/verilator@sha256:a5b73e2fce0b2c483396f3800940f33b6faa802331a061c21694dd27b7352120
+      - name: Lint and build actual UART RTL
+        env:
+          EQUIHASH_N: ${{ matrix.n }}
+        run: python asic/chip/sim/build.py --n "$EQUIHASH_N" --build asic/chip/build/ci-host --timeout 1200
+      - name: Independent UART discovery and solution-set check
+        run: python asic/chip/sim/bridge.py --build asic/chip/build/ci-host --smoke-report asic/chip/build/ci-host/smoke.json --timeout 600
+      - name: Local pool through miner and actual RTL
+        env:
+          EQUIHASH_N: ${{ matrix.n }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          duration=30
+          if [[ "$EQUIHASH_N" == 200 ]]; then duration=300; fi
+          python tests/qualify_device.py --build asic/chip/build/ci-host \
+            --seconds "$duration" --output private/ci-rtl
+      - name: Retain qualification evidence and failure logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: rtl-${{ matrix.n }}-${{ github.sha }}
+          retention-days: 30
+          path: |
+            asic/chip/build/ci-host/inputs.json
+            asic/chip/build/ci-host/result.json
+            asic/chip/build/ci-host/*.log
+            asic/chip/build/ci-host/smoke.json
+            private/ci-rtl/

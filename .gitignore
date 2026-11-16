@@ -1,0 +1,48 @@
+# Local tooling, credentials and caches
+/.agents/
+/.aws/
+/.codex/
+/.ssh/
+/.venv/
+/venv/
+/private/
+/.npmrc
+/.pypirc
+*.pem
+*.key
+*.p12
+*.pfx
+wallet.dat
+*.tfstate
+*.tfstate.*
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.pytest_cache/
+.zig-cache/
+zig-out/
+node_modules/
+.DS_Store
+*.log
+
+# Generated PCB outputs (source remains in asic/)
+/asic/.tscircuit/
+/asic/dist/
+/asic/fab/
+
+# Generated Caravel package checkout and locally provisioned process data
+/asic/zeq200_caravel/
+/asic/chip/pd/pdk/
+/asic/chip/pd/**/runs/
+/asic/chip/pd/tc/stat.txt
+
+# Retain only the immutable source snapshot needed by config-d.json.
+/asic/chip/build/*
+!/asic/chip/build/plan-d-source/
+/asic/chip/*.aig
+/asic/chip/*.vcd
+/asic/chip/formal/lean/.lake/
+/asic/chip/formal/tla/states/
+/asic/chip/formal/tla/*_TTrace_*

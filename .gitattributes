@@ -1,0 +1,6 @@
+# Keep the immutable source snapshot's recorded bytes across checkouts.
+/asic/chip/build/plan-d-source/** -text
+/asic/chip/formal/tla/tla2tools.jar binary
+
+# Preserve upstream legal files verbatim, including their whitespace.
+/LICENSES/tla2tools/** -text -whitespace

@@ -1,0 +1,98 @@
+name: Portable Linux candidates
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portable-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package:
+    name: Build, reproduce and test ${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            target: x86_64-linux-musl
+            runner: ubuntu-24.04
+            zig_sha: 02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239
+          - arch: aarch64
+            target: aarch64-linux-musl
+            runner: ubuntu-24.04-arm
+            zig_sha: 958ed7d1e00d0ea76590d27666efbf7a932281b3d7ba0c6b01b0ff26498f667f
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.11'
+      - name: Install pinned build and verification tools
+        env:
+          ZIG_ARCH: ${{ matrix.arch }}
+          ZIG_SHA: ${{ matrix.zig_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -r requirements-dev.txt
+          zig_archive="$RUNNER_TEMP/zig.tar.xz"
+          curl --fail --silent --show-error --location --retry 3 \
+            "https://ziglang.org/download/0.15.2/zig-$ZIG_ARCH-linux-0.15.2.tar.xz" \
+            --output "$zig_archive"
+          printf '%s  %s\n' "$ZIG_SHA" "$zig_archive" | sha256sum --check --strict
+          tar -xJf "$zig_archive" -C "$RUNNER_TEMP"
+          printf '%s\n' "$RUNNER_TEMP/zig-$ZIG_ARCH-linux-0.15.2" >> "$GITHUB_PATH"
+      - name: Build twice, compare and test a fresh install
+        env:
+          MINER_TARGET: ${{ matrix.target }}
+        run: python scripts/package_release.py --target "$MINER_TARGET" --output private/release
+      - name: Retain portable candidates and verification logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: portable-${{ matrix.arch }}-${{ github.sha }}
+          retention-days: 30
+          path: |
+            private/release/*.tar.gz
+            private/release/*.log
+            private/release/SHA256SUMS
+            private/release/result.json
+
+  assemble:
+    name: Verify combined release artifacts
+    needs: package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: portable-*-${{ github.sha }}
+          path: private/candidates
+      - name: Check both native reports and the shared source archive
+        env:
+          RELEASE_COMMIT: ${{ github.sha }}
+        run: >-
+          python scripts/assemble_release.py --candidates private/candidates
+          --output private/assembled --commit "$RELEASE_COMMIT"
+      - name: Retain the verified release set
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-set-${{ github.sha }}
+          retention-days: 30
+          path: private/assembled/

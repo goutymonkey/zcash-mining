@@ -1,0 +1,10 @@
+{
+  "verilator": {
+    "version": "5.052",
+    "image": "verilator/verilator@sha256:a5b73e2fce0b2c483396f3800940f33b6faa802331a061c21694dd27b7352120",
+    "source_tag": "v5.052",
+    "source_url": "https://github.com/verilator/verilator/tree/v5.052"
+  },
+  "python": "3.11",
+  "numpy": "1.26.4"
+}

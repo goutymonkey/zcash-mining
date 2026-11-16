@@ -1,0 +1,82 @@
+{
+  "artifacts_distributed": false,
+  "core_control_small": {
+    "audit": {
+      "coverage": {
+        "backpressure_cycles": "973",
+        "bad_crc_ignored": "1",
+        "bist_job_deferred": "0",
+        "bist_pass": "1",
+        "bist_stop_canceled": "0",
+        "filter_drops": "2",
+        "generation_cancel": "1",
+        "job_during_solution": "0",
+        "reset_bist_pass": "1",
+        "round_reset": "1",
+        "startup_bist_pass": "1",
+        "stop_during_solution": "1"
+      },
+      "filtered_raw_solutions": 2,
+      "forwarded_packets": 4,
+      "partial_job_solutions": 1,
+      "replacement_job_solutions": 1,
+      "scope": "UART digital-core integration, not physical IO or broad yield qualification",
+      "solutions_verified": 2,
+      "status": "PASS"
+    },
+    "local_artifact": "asic/chip/build/launch-core48-v1",
+    "not_exercised": [
+      "job_during_solution",
+      "bist_job_deferred",
+      "bist_stop_canceled"
+    ],
+    "result_sha256": "500b7c05b3d12cf4db0a3d637ac99cdd4a4d5cfd97a20558e2fcb5a28d55d1ef",
+    "scope": "Run digital-core integration using only archived RTL, models and verifier. No macro, physical IO or broad-yield qualification.",
+    "status": "PASS"
+  },
+  "link_saturation": {
+    "cases": [
+      {
+        "clock_periods_ns": [
+          10,
+          10,
+          10,
+          10
+        ],
+        "evidence_sha256": {
+          "compile.log": "744f02619f8b19a0f840f6794a36e34a8101f085b220cd59f18d46fa0f6180d5",
+          "simulation.log": "dc7ae3c72e827f6bc7fc295e77b2761d458a897a17d017320842bbb3a26ad5d0"
+        },
+        "skew": 0,
+        "status": "PASS"
+      },
+      {
+        "clock_periods_ns": [
+          10.06,
+          10.04,
+          10.02,
+          10
+        ],
+        "evidence_sha256": {
+          "compile.log": "bb00b0302478a3560f8b8466105b12ff5a125cfb8b0a012fe4980d34167fe0d0",
+          "simulation.log": "2dd02a0d9dcc53c40b89b73eb1335336c79145733e36194ac759b3ec997054ca"
+        },
+        "skew": 1,
+        "status": "PASS"
+      }
+    ],
+    "duration_ns_per_case": 500000000,
+    "inputs_sha256": "6535bb877c4b3786bef98b86aa02272a1e347c5edd500329a4ec9f9a0a3110db",
+    "local_artifact": "asic/chip/build/launch-link200-v1",
+    "result_sha256": "84a92fc5eba3c735cc07629c8e10b941564cc1335b36258f24137aec2e30857b",
+    "scope": "Four links, N200K9/DIV16, synthetic continuously available results. No Equihash, solver, physical SRAM, or unbounded liveness proof.",
+    "status": "PASS"
+  },
+  "mainnet_core_control": {
+    "local_artifact": "asic/chip/build/launch-core200-v1",
+    "note": "Covers mainnet-only BIST job deferral, BIST-time STOP and job replacement during solution output; verdict pending.",
+    "status": "RUNNING"
+  },
+  "physical_device_validation": false,
+  "remaining_formal_obligation": "UNPROVEN"
+}

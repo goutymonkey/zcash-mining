@@ -1,0 +1,9 @@
+# Packet FIFO: order + integrity of an arbitrary byte, bounded (24 cycles, 4 entries).
+read_verilog -formal rtl/zeq_fifo.v rtl/zeq_ram.v rtl/zeq_mbist.v formal/fifo_check.v
+prep -top fifo_check
+flatten
+memory -nomap
+memory_map
+async2sync
+dffunmap
+sat -seq 24 -prove-asserts -set-assumes -set-init-zero -verify

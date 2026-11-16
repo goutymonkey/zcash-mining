@@ -1,0 +1,7 @@
+# UART: every byte value is delivered unchanged within 60 cycles (DIV=4).
+read_verilog -formal rtl/zeq_uart.v formal/uart_loop.v
+prep -top uart_loop
+flatten
+async2sync
+dffunmap
+sat -seq 62 -prove-asserts -set-init-zero -set-def-inputs -verify

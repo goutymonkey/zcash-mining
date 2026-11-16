@@ -1,0 +1,36 @@
+{
+  "base": "build/plan-c-source/rtl.tgz",
+  "rtl_changes": [
+    "zeq_link.v: wait for registered FIFO pop before idle packet selection"
+  ],
+  "files": {
+    "config.json": "6ac06171c7bc4662a9ac432ca07815f1550a9e8cb20f1fd4dd68d288850a190f",
+    "rtl/tech/sky130/zeq_ram.v": "3f4e2ac6c6155182930f4b381eef850f1acda9eb5c7ef4915cb027b00a3a8fd2",
+    "rtl/tech/sky130/zeq_sram_port.v": "adc414b933e9e15d0aef063fce334665857af6c55063881d93da2edf62cc2de0",
+    "rtl/zeq200.v": "a7775aa9c320b01515a0c6b8c185faad3d6d88e12b2d7c4e7ce0b0948850c920",
+    "rtl/zeq200_core.v": "bd22829060eb068f8bc9b7aa812acd78582f3041622610c51dac876cf84a9db9",
+    "rtl/zeq200_tc.v": "736318b69c386c33963ef88116564acb9e734f78fac01a8bdc47906a73794db9",
+    "rtl/zeq200m.v": "534d5163bc9df5251cccbf52ca7a5248b781835ae1fc09399f0a7e8ba4c644c4",
+    "rtl/zeq_blake2b.v": "5e377f0e764268aca468194a8d9a32d26f1b8742fb92dd3328d777888b5bf1d2",
+    "rtl/zeq_caravel_wrapper.v": "4a42395eca0230789e4bfd5882bebe99de4d469e5199fc0f5aec51b8ec266a7b",
+    "rtl/zeq_eh_hash.v": "fa376f279443a7ac45f4c2bc7e97556fa0a8922708dfca37e3278ae0b1f7f1c7",
+    "rtl/zeq_eh_par.v": "61000e43d5dc39de2a4eecf5f1042163bfac77abc6c92a31d94169a60d72ba62",
+    "rtl/zeq_eh_solver.v": "7e26e11bb545f196338b5a7891e3843ef133f948e7def818c039bcaa0213ac9d",
+    "rtl/zeq_eh_solver2.v": "28bec27550c3030479b82d486125da82e147eb94abee5a27d3bcf922297aec62",
+    "rtl/zeq_eh_solver3.v": "54a78eed24c43db36d87aededf7fc1a3e539de39cddcce41437ed7c9ce6ce6d9",
+    "rtl/zeq_fifo.v": "6b06aef037b0ba7e62c1b76d9df4eb5f6db725dfe6f8129c96ec0c1ef93a0f2f",
+    "rtl/zeq_link.v": "5b140c25ec9c20fed2fc134a9e7e073705e3d737f602acb2f95c73c5f8072de1",
+    "rtl/zeq_mbist.v": "33b5357b957b8e4d91b2dcc8d81cc3235221c5464c5ae983b5e15c4592f963c1",
+    "rtl/zeq_ram.v": "7db465c94b3864bf208d8ff64cf2965787e1234ab4669363974f34e9962ffbdc",
+    "rtl/zeq_sfifo.v": "e90a36a28d14bd0010295a63aa921b823005f2c9806f8a29cd7bea71e54cf03d",
+    "rtl/zeq_sha256.v": "1d95408c120f6f25729278da19fb1ba64997b62fb0bdffd1a9713633f307d090",
+    "rtl/zeq_share.v": "7c6ba834ab9d69c1287f38f5e85389fe6a1ed39dd37a528b61f9670b90b60a5a",
+    "rtl/zeq_tables_sram.v": "e538bc307bec7760037e96ccd91ece40d84554a6bd575272c36c09dd22cf7521",
+    "rtl/zeq_uart.v": "135310063654a325550c1382d7d19ba352625fb90cdf0cc35d8edd39c31f1826",
+    "rtl/zeq_xbar_arb.v": "b6f71be421bdd2d78fdcbda899cbb77de1f27402a0f13db247fe1926189c0289",
+    "wrapper-src/defines.v": "d4396effd5abd7fd2fa5cf6a9e9c2f0e737feed6d654046365cc8ca4ceb2d02d",
+    "wrapper-src/user_project_wrapper.def": "ee497d97ea21e010cab851e1a76cb393e39b51caefbd45703e4aac306d194ddb",
+    "wrapper-src/user_project_wrapper.v": "c16431eb29c4ba72601cf17dce7739336f77ef5be5ae119f64bbec3d902c16b5",
+    "wrapper-src/zeq_wrapper.sdc": "b87ef115afb51d5093f2fb5d3b6b95c0f9fabfc16f6d94d92dacfc2052fe9e6e"
+  }
+}

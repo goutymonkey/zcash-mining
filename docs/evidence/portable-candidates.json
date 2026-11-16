@@ -1,0 +1,85 @@
+{
+  "artifact_distributed": false,
+  "artifacts": {
+    "zcash-miner-0.5.0-69dc184e0f32-linux-x86_64.tar.gz": "231af6d9c774a47aabe572d3d1cd830a96b7243cd6d050483816898977b114f6",
+    "zcash-miner-0.5.0-69dc184e0f32-source.tar.gz": "ba50b041df752d4061b408507ee26cca6a86ee36d38e8214005dc18d8f3da2fb"
+  },
+  "binary_sha256": "d69d9f21a416a98df488ed56119d8a93ed348ce497133e16051623922d89a8c4",
+  "combined_release_set": {
+    "note": "The first native CI run passed each target independently, but target-specific SOURCE.json rebuild commands produced two source archives with the same name and different hashes. Packaging now records both commands and CI requires a matching combined release set. Historical artifacts are preserved.",
+    "status": "PENDING"
+  },
+  "fresh_install_tests": true,
+  "git_head": "69dc184e0f32cef07fc52c490299e7cc277966ee",
+  "hardware_ci": "https://github.com/goutymonkey/zcash-mining/actions/runs/40936597740",
+  "independent_rebuild_identical": true,
+  "local_artifact": "private/launch/portable-x86-v1",
+  "logs": {
+    "build-1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "onboarding-demo.log": "24c1fda28d501b169ce8a83e69709a75a9f398b6dda21ed52833532b5644979f",
+    "onboarding-tests.log": "a191d84290779ae79be641f3bdddf9e748743a1caa3ee79bbf94781f5d5e8c86",
+    "unit-tests.log": "fcf00642015738b5c0b63546a6065c7a5d7d0f7d238583e6235249fc0d1cf614"
+  },
+  "native_arm_validation": "PASS",
+  "native_ci": {
+    "commit": "b359d5917fee1820c9c2249e348a4be231697860",
+    "status": "PASS",
+    "targets": {
+      "aarch64-linux-musl": {
+        "artifacts": {
+          "zcash-miner-0.5.0-b359d5917fee-linux-aarch64.tar.gz": "6b577787807166c195362db4586b3b37cde05396bf8ae9c7ef62a04e7920c9f1",
+          "zcash-miner-0.5.0-b359d5917fee-source.tar.gz": "2c9c17d020ccacfd608ce0e35acfdbe55e64cca2fd74cfeccfc7309844b03f3a"
+        },
+        "binary_sha256": "2abc27b2e207120b43f59760b8e45abc1179c84836f9b87f357845abe395ed70",
+        "fresh_install_tests": true,
+        "git_head": "b359d5917fee1820c9c2249e348a4be231697860",
+        "independent_rebuild_identical": true,
+        "logs": {
+          "build-1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "build-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "onboarding-demo.log": "24c1fda28d501b169ce8a83e69709a75a9f398b6dda21ed52833532b5644979f",
+          "onboarding-tests.log": "dd9beb8e878330c2437c40516e26c52bec4eab351e6e970ad66c3f06581d97f0",
+          "unit-tests.log": "be44d2cabd28e78602d6383ab30eedef1a4321448bf1cda3bdcd411e53af9103"
+        },
+        "native_tests": true,
+        "result_sha256": "29236870ed70fcc851cc445a6b7d9fab19e445c73d7a94979b5f7bf62ff548e4",
+        "scope": "portable binary packaging and reproducibility; separate release gates still apply",
+        "status": "PASS",
+        "target": "aarch64-linux-musl",
+        "version": "0.5.0"
+      },
+      "x86_64-linux-musl": {
+        "artifacts": {
+          "zcash-miner-0.5.0-b359d5917fee-linux-x86_64.tar.gz": "07085cb90252fd57714818b4d39b2d74446ad71be52f6ca29d99e2fbb0e41204",
+          "zcash-miner-0.5.0-b359d5917fee-source.tar.gz": "a414d827069a0636004b2c92801c791b3c7c0bc2e13a507257211ba9dafa3c1e"
+        },
+        "binary_sha256": "d69d9f21a416a98df488ed56119d8a93ed348ce497133e16051623922d89a8c4",
+        "fresh_install_tests": true,
+        "git_head": "b359d5917fee1820c9c2249e348a4be231697860",
+        "independent_rebuild_identical": true,
+        "logs": {
+          "build-1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "build-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "onboarding-demo.log": "acdabf65b885d83f978c7ee2e3e1d7b658ed07b2460c1f82b359421025258cb4",
+          "onboarding-tests.log": "6c34fb0521469a41fb66b4cfa0db1a249461b36f0f0c20ca442874a630ac2390",
+          "unit-tests.log": "a1b513a38556fa611c34bfbae42def01bee81294920cb40467c2591575f1a3b6"
+        },
+        "native_tests": true,
+        "result_sha256": "aae60eae88581d43e25b1d9033ab99c7f502bf943665908b2b5ee29ca741964d",
+        "scope": "portable binary packaging and reproducibility; separate release gates still apply",
+        "status": "PASS",
+        "target": "x86_64-linux-musl",
+        "version": "0.5.0"
+      }
+    },
+    "url": "https://github.com/goutymonkey/zcash-mining/actions/runs/40936720552"
+  },
+  "native_tests": true,
+  "result_sha256": "02353092492ed47c0479088f6ded19d3d4ce8dd46259599e725235f5f8cd1134",
+  "scope": "portable binary packaging and reproducibility; separate release gates still apply",
+  "software_ci": "https://github.com/goutymonkey/zcash-mining/actions/runs/40936597673",
+  "status": "PASS",
+  "target": "x86_64-linux-musl",
+  "version": "0.5.0"
+}

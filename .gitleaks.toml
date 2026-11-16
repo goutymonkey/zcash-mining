@@ -1,0 +1,14 @@
+title = "zcash-mining secret scanning"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+  [[rules.allowlists]]
+  description = "Historical SHA-256 evidence entries for the memory activity CSV, reviewed for public preparation"
+  condition = "AND"
+  paths = ['''(^|/)asic/chip/production/verification_snapshot\.json$''']
+  regexTarget = "match"
+  regexes = ['''^memory_accesses\.csv": "[0-9a-f]{64}"$''']

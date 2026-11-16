@@ -1,0 +1,190 @@
+{
+  "DESIGN_NAME": "zeq200_tc",
+  "VERILOG_FILES": [
+    "dir::../../rtl/zeq_blake2b.v",
+    "dir::../../rtl/zeq_eh_hash.v",
+    "dir::../../rtl/zeq_sfifo.v",
+    "dir::../../rtl/zeq_eh_solver3.v",
+    "dir::../../rtl/zeq_mbist.v",
+    "dir::../../rtl/tech/sky130/zeq_ram.v",
+    "dir::../../rtl/zeq_xbar_arb.v",
+    "dir::../../rtl/zeq_eh_par.v",
+    "dir::../../rtl/zeq_sha256.v",
+    "dir::../../rtl/zeq_share.v",
+    "dir::../../rtl/tech/sky130/zeq_sram_port.v",
+    "dir::../../rtl/zeq_fifo.v",
+    "dir::../../rtl/zeq_uart.v",
+    "dir::../../rtl/zeq_link.v",
+    "dir::../../rtl/zeq200_core.v",
+    "dir::../../rtl/zeq200_tc.v"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 25,
+  "FP_SIZING": "absolute",
+  "DIE_AREA": [
+    0,
+    0,
+    2920,
+    3520
+  ],
+  "PL_TARGET_DENSITY_PCT": 55,
+  "RUN_LINTER": false,
+  "MACROS": {
+    "sky130_sram_2kbyte_1rw1r_32x512_8": {
+      "gds": [
+        "pdk_dir::libs.ref/sky130_sram_macros/gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds"
+      ],
+      "lef": [
+        "pdk_dir::libs.ref/sky130_sram_macros/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef"
+      ],
+      "vh": [
+        "pdk_dir::libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v"
+      ],
+      "lib": {
+        "*": [
+          "pdk_dir::libs.ref/sky130_sram_macros/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+        ]
+      },
+      "instances": {
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_idx.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            40,
+            750
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_ptr.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            40,
+            1217
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_ptr.g_macro.g_d[1].g_w[0].u_mem": {
+          "location": [
+            40,
+            1684
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_ptr.g_macro.g_d[2].g_w[0].u_mem": {
+          "location": [
+            40,
+            2151
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_ptr.g_macro.g_d[3].g_w[0].u_mem": {
+          "location": [
+            40,
+            2618
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_val0.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            40,
+            3085
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_val0.g_macro.g_d[0].g_w[1].u_mem": {
+          "location": [
+            783,
+            750
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_val1.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            783,
+            1217
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[0].m_val1.g_macro.g_d[0].g_w[1].u_mem": {
+          "location": [
+            783,
+            1684
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_idx.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            783,
+            2151
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_ptr.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            783,
+            2618
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_ptr.g_macro.g_d[1].g_w[0].u_mem": {
+          "location": [
+            783,
+            3085
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_ptr.g_macro.g_d[2].g_w[0].u_mem": {
+          "location": [
+            1526,
+            750
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_ptr.g_macro.g_d[3].g_w[0].u_mem": {
+          "location": [
+            1526,
+            1217
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_val0.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            1526,
+            1684
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_val0.g_macro.g_d[0].g_w[1].u_mem": {
+          "location": [
+            1526,
+            2151
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_val1.g_macro.g_d[0].g_w[0].u_mem": {
+          "location": [
+            1526,
+            2618
+          ],
+          "orientation": "N"
+        },
+        "u_core.g_lane[0].g_par.u_solver.g_eng[1].m_val1.g_macro.g_d[0].g_w[1].u_mem": {
+          "location": [
+            1526,
+            3085
+          ],
+          "orientation": "N"
+        }
+      }
+    }
+  },
+  "PDN_MACRO_CONNECTIONS": [
+    ".*u_mem vccd1 vssd1 vccd1 vssd1"
+  ],
+  "PL_MACRO_HALO": "20 20",
+  "STA_CORNERS": [
+    "nom_tt_025C_1v80",
+    "nom_ss_100C_1v60",
+    "nom_ff_n40C_1v95"
+  ],
+  "GRT_ALLOW_CONGESTION": true,
+  "GRT_ADJUSTMENT": 0.2,
+  "GRT_OVERFLOW_ITERS": 8
+}

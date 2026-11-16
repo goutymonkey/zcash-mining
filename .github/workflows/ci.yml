@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  secrets:
+    name: Reachable-history secret scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install verified Gitleaks 8.30.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          gitleaks_archive="$RUNNER_TEMP/gitleaks.tar.gz"
+          curl --fail --silent --show-error --location --retry 3 \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz \
+            --output "$gitleaks_archive"
+          printf '%s  %s\n' \
+            551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb \
+            "$gitleaks_archive" | sha256sum --check --strict
+          mkdir -p "$RUNNER_TEMP/gitleaks-bin"
+          tar -xzf "$gitleaks_archive" -C "$RUNNER_TEMP/gitleaks-bin" gitleaks
+          printf '%s\n' "$RUNNER_TEMP/gitleaks-bin" >> "$GITHUB_PATH"
+      - name: Scan all fetched history
+        run: gitleaks git . --log-opts=--all --redact
+
+  software-checks:
+    name: Software and verification-tool tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.11'
+      - name: Install pinned Python dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install Zig 0.15.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          zig_archive="$RUNNER_TEMP/zig.tar.xz"
+          curl --fail --silent --show-error --location --retry 3 \
+            https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz \
+            --output "$zig_archive"
+          printf '%s  %s\n' \
+            02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239 \
+            "$zig_archive" | sha256sum --check --strict
+          tar -xJf "$zig_archive" -C "$RUNNER_TEMP"
+          printf '%s\n' "$RUNNER_TEMP/zig-x86_64-linux-0.15.2" >> "$GITHUB_PATH"
+      - name: Build and test the CPU miner
+        run: |
+          zig version
+          zig build -Doptimize=ReleaseFast
+          zig build test -Doptimize=ReleaseFast --summary all
+          ./zig-out/bin/zcash-miner --demo --params 48,5
+      - name: Test Python models and verification tooling
+        run: python scripts/check_python.py

@@ -1,0 +1,2 @@
+# Python 3.11 baseline used by CI and the contributor quickstart.
+numpy==1.26.4

@@ -1,0 +1,21 @@
+{
+  "name": "zeq-hashboard",
+  "version": "1.0.0",
+  "description": "4-chip Equihash (200,9) hashboard in tscircuit",
+  "scripts": {
+    "build": "tsci build index.circuit.tsx --disable-parts-engine --pcb-png --schematic-png",
+    "dev": "tsci dev",
+    "snapshot": "tsci snapshot"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tscircuit/cli": "^0.1.2132",
+    "@types/react": "^19.3.0",
+    "bun": "^1.4.2",
+    "tscircuit": "^0.0.2635",
+    "typescript": "^5.9.3"
+  },
+  "private": true
+}

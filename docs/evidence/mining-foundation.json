@@ -1,0 +1,123 @@
+{
+  "checks": {
+    "python_suites": [
+      "tests",
+      "asic/chip/formal",
+      "asic/chip/formal/cec",
+      "asic/chip/model",
+      "asic/chip/pd",
+      "asic/chip/tb"
+    ],
+    "python_tests": 322,
+    "small_complete_solution_set_inputs": 32,
+    "zig_tests": 30
+  },
+  "limits": [
+    "Public-pool account testing is deferred by the user.",
+    "Two-minute pilot is not a 24-hour soak.",
+    "Two benchmark inputs are not a broad performance corpus.",
+    "Hardware integration, hardware CI, release packaging and formal qualification remain open."
+  ],
+  "runs": {
+    "benchmark200-v1": {
+      "all_over_first_throughput": 1.3613003494739153,
+      "binary_sha256": "7bb62f1ce56d69c12d33be546c74b1cae0d26632492d204cd2296ed64187c3ae",
+      "corpus_sha256": "dfbbdcaf0b2979f4221bbc515cc404dfaafdf6a88d3a42e7feceb715db215835",
+      "local_evidence_directory": "private/launch/benchmark200-v1",
+      "result_sha256": "adc1d772bf5d7814b42d9046019880b088bcc9472c534ecd1f0206dde20ec5f4",
+      "status": "PASS",
+      "summary": {
+        "all": {
+          "max_nonce_seconds": 27.516039307,
+          "median_nonce_seconds": 27.0497445235,
+          "peak_requested_bytes": 1289814434,
+          "process_peak_rss_bytes": 983425024,
+          "solve_seconds": 107.147034651,
+          "verified_solutions": 6,
+          "verified_solutions_per_second": 0.05599781664087334
+        },
+        "first": {
+          "max_nonce_seconds": 30.189538897,
+          "median_nonce_seconds": 24.6250848305,
+          "peak_requested_bytes": 1289814434,
+          "process_peak_rss_bytes": 983453696,
+          "solve_seconds": 97.239530477,
+          "verified_solutions": 4,
+          "verified_solutions_per_second": 0.0411355338757638
+        }
+      }
+    },
+    "mainnet-acceptance-v4": {
+      "checks": {
+        "acknowledged_acceptance": true,
+        "complete_duration": true,
+        "exit_success": true,
+        "independent_valid_shares": true,
+        "independent_verifier_clean": true,
+        "no_worker_failure": true,
+        "submission_accounting": true
+      },
+      "local_evidence_directory": "private/launch/mainnet-acceptance-v4",
+      "miner_stats": {
+        "accepted": 5,
+        "attempts": 3,
+        "connections": 1,
+        "discarded": 0,
+        "jobs": 1,
+        "malformed": 0,
+        "reconnects": 0,
+        "rejected": 0,
+        "response_ms_total": 100,
+        "solutions": 5,
+        "stale": 0,
+        "submitted": 5,
+        "unexpected_replies": 0,
+        "unknown": 0,
+        "worker_failures": 0
+      },
+      "peak_rss_kib": 870904,
+      "requested_seconds": 90,
+      "result_sha256": "313214bab6775fe787f83dd21423f0baa42fa5e99da7496fef825b5e214cfc66",
+      "status": "PASS"
+    },
+    "soak-pilot-v2": {
+      "checks": {
+        "acknowledged_acceptance": true,
+        "complete_duration": true,
+        "exit_success": true,
+        "independent_valid_shares": true,
+        "independent_verifier_clean": true,
+        "job_updates_exercised": true,
+        "malformed_input_exercised": true,
+        "no_worker_failure": true,
+        "reconnect_exercised": true,
+        "rejection_exercised": true,
+        "submission_accounting": true
+      },
+      "local_evidence_directory": "private/launch/soak-pilot-v2",
+      "miner_stats": {
+        "accepted": 1638,
+        "attempts": 26454,
+        "connections": 234,
+        "discarded": 243,
+        "jobs": 936,
+        "malformed": 234,
+        "reconnects": 234,
+        "rejected": 1163,
+        "response_ms_total": 337433,
+        "solutions": 19270,
+        "stale": 1163,
+        "submitted": 16428,
+        "unexpected_replies": 234,
+        "unknown": 13627,
+        "worker_failures": 0
+      },
+      "peak_rss_kib": 2940,
+      "requested_seconds": 120,
+      "result_sha256": "2516eb1eb4547b5b3cbf314b4aaf1e436421b70304ea2778dd5a4912c78e0c51",
+      "status": "PASS"
+    }
+  },
+  "schema": "zcash-launch-foundation-evidence-v1",
+  "status": "IN_PROGRESS"
+}

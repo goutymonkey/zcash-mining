@@ -1,0 +1,15 @@
+# Crossbar arbiter: exclusivity, work conservation, bounded fairness.
+# Induction proof (holds for all time), P = 4 and P = 8.
+read_verilog -formal rtl/zeq_xbar_arb.v
+chparam -set PB 2 -set BANK 1 zeq_xbar_arb
+prep -top zeq_xbar_arb
+async2sync
+dffunmap
+sat -tempinduct -prove-asserts -set-at 1 rst 1 -seq 1 -maxsteps 12 -verify
+design -reset
+read_verilog -formal rtl/zeq_xbar_arb.v
+chparam -set PB 3 -set BANK 5 zeq_xbar_arb
+prep -top zeq_xbar_arb
+async2sync
+dffunmap
+sat -tempinduct -prove-asserts -set-at 1 rst 1 -seq 1 -maxsteps 20 -verify
